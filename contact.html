@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fashion Factory | Contact Us</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#b8860b;--gold-l:#c8960c;--bg:#faf8f3;--bg2:#f2ece0;--bg3:#fffdf7;--bg4:#e8e0d0;--txt:#1a1204;--dim:#7a6e5f;--border:rgba(184,134,11,.22);--wa:#25D366}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+
+/* SKELETON */
+#sk{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .6s ease}
+#sk.out{opacity:0;pointer-events:none}
+.sk-logo{width:220px;height:36px;border-radius:6px}
+.sk-row{display:flex;gap:16px;margin-top:10px}
+.sk-card{width:170px;border-radius:12px;overflow:hidden}
+.sk-img{height:160px}
+.sk-t{height:14px;margin:8px 10px 6px;border-radius:4px}
+.sk-t.s{width:55%;height:11px;margin-bottom:10px}
+.sk-logo,.sk-img,.sk-t{background:linear-gradient(90deg,#e8e2d6 25%,#d4cdc0 50%,#e8e2d6 75%);background-size:200% 100%;animation:shim 1.4s infinite}
+@keyframes shim{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:14px 40px;background:rgba(8,8,8,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:all .3s}
+.logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--gold);letter-spacing:3px;text-transform:uppercase;cursor:pointer;user-select:none}
+.logo em{color:#fff;font-style:normal}
+nav{display:flex;gap:28px}
+nav a{color:var(--dim);text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;transition:color .2s}
+nav a:hover{color:var(--gold)}
+.cart-btn{position:relative;background:none;border:1px solid var(--border);color:var(--txt);padding:8px 20px;border-radius:30px;cursor:pointer;font-size:12px;letter-spacing:1px;display:flex;align-items:center;gap:8px;transition:all .3s;font-family:'Inter',sans-serif}
+.cart-btn:hover{border-color:var(--gold);color:var(--gold)}
+.cbadge{position:absolute;top:-7px;right:-7px;background:var(--gold);color:#000;font-size:9px;font-weight:700;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center}
+
+/* HERO ANIMATIONS */
+.hbg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(212,175,55,.09) 0%,transparent 65%),radial-gradient(ellipse at 80% 80%,rgba(212,175,55,.05) 0%,transparent 50%);pointer-events:none}
+.particles{position:absolute;inset:0;pointer-events:none}
+.pt{position:absolute;border-radius:50%;background:var(--gold);opacity:.25;animation:flt linear infinite}
+@keyframes flt{0%{transform:translateY(110vh);opacity:0}10%{opacity:.25}90%{opacity:.25}100%{transform:translateY(-80px);opacity:0}}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
+.rev.vis{opacity:1;transform:translateY(0)}
+
+/* SECTIONS */
+section{padding:80px 40px}
+.sh{text-align:center;margin-bottom:56px}
+.stag{color:var(--gold);font-size:10px;letter-spacing:4px;text-transform:uppercase;margin-bottom:10px}
+.st{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,46px);font-weight:700}
+.gl{width:56px;height:2px;background:var(--gold);margin:14px auto 0}
+
+/* CART DRAWER */
+.cov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(5px);z-index:400}
+.cov.open{display:block}
+.cdrawer{position:fixed;top:0;right:-430px;width:420px;height:100vh;background:var(--bg3);border-left:1px solid var(--border);z-index:401;transition:right .4s cubic-bezier(.34,1.56,.64,1);display:flex;flex-direction:column}
+.cdrawer.open{right:0}
+.chdr{padding:22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.ctitle{font-family:'Playfair Display',serif;font-size:21px;font-weight:700}
+.ccls{background:none;border:1px solid rgba(255,255,255,.1);color:var(--txt);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.ccls:hover{border-color:#e53935;color:#e53935}
+.citems{flex:1;overflow-y:auto;padding:14px}
+.citem{display:grid;grid-template-columns:76px 1fr auto;gap:10px;padding:11px;background:var(--bg2);border-radius:11px;margin-bottom:10px;border:1px solid rgba(255,255,255,.04);align-items:center}
+.cimg{width:76px;height:66px;object-fit:cover;border-radius:7px}
+.cin{font-size:13px;font-weight:600;margin-bottom:3px}
+.csz{font-size:11px;color:var(--dim);margin-bottom:3px}
+.cpr{font-size:14px;color:var(--gold);font-weight:700}
+.crm{background:none;border:none;color:var(--dim);cursor:pointer;font-size:16px;transition:color .2s;padding:3px;align-self:start}
+.crm:hover{color:#e53935}
+.cempty{text-align:center;padding:50px 20px;color:var(--dim)}
+.cempty-ic{font-size:44px;margin-bottom:12px;opacity:.3}
+.cftr{padding:18px 22px;border-top:1px solid var(--border)}
+.ctrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.ctlbl{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+.ctamt{font-size:24px;font-weight:700;color:var(--gold)}
+.bco{width:100%;background:var(--wa);color:#fff;padding:15px;border:none;border-radius:11px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;transition:all .3s;font-family:'Inter',sans-serif}
+.bco:hover{background:#1da050;transform:translateY(-2px);box-shadow:0 10px 28px rgba(37,211,102,.3)}
+
+/* FOOTER */
+footer{background:#050505;border-top:1px solid var(--border);padding:56px 40px 28px}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:50px;max-width:1100px;margin:0 auto 36px}
+.fdesc{color:var(--dim);font-size:13px;line-height:1.75;max-width:270px;margin-top:12px}
+.fcol h4{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.fcol ul{list-style:none}
+.fcol ul li{margin-bottom:10px}
+.fcol ul li a{color:var(--dim);text-decoration:none;font-size:13px;transition:color .2s}
+.fcol ul li a:hover{color:var(--gold)}
+.fbot{border-top:1px solid rgba(255,255,255,.04);padding-top:22px;text-align:center;color:var(--dim);font-size:12px;max-width:1100px;margin:0 auto}
+
+/* WA FAB */
+.wafab{position:fixed;bottom:28px;right:28px;background:var(--wa);color:#fff;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 24px rgba(37,211,102,.45);z-index:300;transition:transform .3s,box-shadow .3s;text-decoration:none;animation:pulse-wa 2.5s infinite}
+.wafab:hover{transform:scale(1.1);box-shadow:0 10px 30px rgba(37,211,102,.6)}
+@keyframes pulse-wa{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.45)}50%{box-shadow:0 6px 32px rgba(37,211,102,.75),0 0 0 8px rgba(37,211,102,.1)}}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bg3);border:1px solid var(--gold);color:var(--txt);padding:11px 22px;border-radius:30px;font-size:12px;font-weight:500;z-index:9999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+/* BUTTONS */
+.btn-p{background:var(--gold);color:#000;padding:14px 34px;border:none;border-radius:30px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;box-shadow:none}
+.btn-p:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 12px 30px rgba(212,175,55,.3)}
+
+/* CONTACT SPECIFIC STYLES */
+.contact-hero {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 20px 80px;
+}
+.contact-section {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+.contact-intro {
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--dim);
+  max-width: 650px;
+  margin: -36px auto 52px;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 48px;
+  align-items: start;
+}
+.contact-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.method-card {
+  background: var(--bg3);
+  border: 1px solid rgba(0,0,0,.07);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  transition: transform .3s, box-shadow .3s, border-color .3s;
+}
+.method-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.08), 0 0 0 1px var(--gold);
+  border-color: var(--gold);
+}
+.method-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.wa-icon {
+  background: rgba(37, 211, 102, 0.1);
+  color: var(--wa);
+}
+.ig-icon {
+  background: rgba(184, 134, 11, 0.1);
+  color: var(--gold);
+}
+.method-details h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.method-details p {
+  font-size: 12px;
+  color: var(--dim);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+.method-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+}
+
+.contact-form-container {
+  background: var(--bg3);
+  border: 1px solid rgba(0,0,0,.07);
+  border-radius: 20px;
+  padding: 36px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.02);
+}
+.contact-form-container h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  text-align: center;
+}
+.contact-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.contact-table td {
+  padding: 12px 0;
+  vertical-align: middle;
+}
+.contact-table td:first-child {
+  width: 130px;
+  padding-right: 15px;
+}
+.contact-table label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--dim);
+}
+.contact-table input,
+.contact-table textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--txt);
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  border-radius: 8px;
+  outline: none;
+  transition: all .3s;
+}
+.contact-table input:focus,
+.contact-table textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(184,134,11,.1);
+}
+.contact-table textarea {
+  resize: vertical;
+}
+
+@media(max-width:768px){
+  header{padding:10px 16px}
+  nav{display:none}
+  section{padding:56px 16px}
+  .cdrawer{width:100%;right:-100%}
+  .fgrid{grid-template-columns:1fr;gap:28px}
+  .wafab{bottom:20px;right:16px}
+  
+  .contact-hero {
+    padding: 100px 16px 60px;
+  }
+  .contact-intro {
+    margin-bottom: 32px;
+  }
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .contact-form-container {
+    padding: 24px 16px;
+  }
+  .contact-table td {
+    display: block;
+    width: 100% !important;
+    padding: 6px 0;
+  }
+  .contact-table td:first-child {
+    padding-right: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- SKELETON -->
+<div id="sk">
+  <div class="sk-logo"></div>
+  <div class="sk-row">
+    <div class="sk-card"><div class="sk-img"></div><div class="sk-t"></div><div class="sk-t s"></div></div>
+    <div class="sk-card"><div class="sk-img"></div><div class="sk-t"></div><div class="sk-t s"></div></div>
+    <div class="sk-card"><div class="sk-img"></div><div class="sk-t"></div><div class="sk-t s"></div></div>
+    <div class="sk-card" style="display:none" id="sk4"><div class="sk-img"></div><div class="sk-t"></div><div class="sk-t s"></div></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo" onclick="window.location.href='index.html'">Fashion <em>Factory</em></div>
+  <nav>
+    <a href="index.html#products">Collection</a>
+    <a href="index.html#reviews">Reviews</a>
+    <a href="#" style="color: var(--gold);">Contact</a>
+  </nav>
+  <button class="cart-btn" onclick="openCart()">
+    🛒 Cart
+    <span class="cbadge" id="cbadge"></span>
+  </button>
+</header>
+
+<!-- MAIN CONTENT -->
+<main class="contact-hero">
+  <div class="hbg"></div>
+  <div class="particles" id="pts"></div>
+  
+  <section class="contact-section">
+    <div class="sh rev">
+      <div class="stag">✦ Reach Out</div>
+      <h1 class="st">Contact Us</h1>
+      <div class="gl"></div>
+    </div>
+    
+    <p class="contact-intro rev">Have questions or want to place an order? We'd love to hear from you. Reach out to us through any of these channels.</p>
+    
+    <div class="contact-grid rev">
+      <!-- Left Column: Contact Methods -->
+      <div class="contact-methods">
+        <!-- WhatsApp Card -->
+        <a href="https://wa.me/919606262964" target="_blank" class="method-card">
+          <div class="method-icon wa-icon">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </div>
+          <div class="method-details">
+            <h3>WhatsApp</h3>
+            <p>Quick response for orders and inquiries</p>
+            <span class="method-value">+91 96062 62964</span>
+          </div>
+        </a>
+        
+        <!-- Instagram Card -->
+        <a href="https://instagram.com/fashion_fa_ctory" target="_blank" class="method-card">
+          <div class="method-icon ig-icon">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </div>
+          <div class="method-details">
+            <h3>Instagram</h3>
+            <p>Follow us for updates and behind-the-scenes</p>
+            <span class="method-value">fashion_fa_ctory</span>
+          </div>
+        </a>
+      </div>
+      
+      <!-- Right Column: Form -->
+      <div class="contact-form-container">
+        <h2>Send us a Message</h2>
+        <form id="contactForm" onsubmit="sendForm(event)">
+          <table class="contact-table">
+            <tr>
+              <td><label for="cname">Your Name</label></td>
+              <td><input type="text" id="cname" placeholder="Enter your name" required></td>
+            </tr>
+            <tr>
+              <td><label for="cemail">Email Address</label></td>
+              <td><input type="email" id="cemail" placeholder="Enter your email" required></td>
+            </tr>
+            <tr>
+              <td><label for="cmsg">Message</label></td>
+              <td><textarea id="cmsg" rows="5" placeholder="Tell us about your order or inquiry..." required></textarea></td>
+            </tr>
+            <tr>
+              <td colspan="2" style="padding-top: 15px;">
+                <button type="submit" class="btn-p" style="width: 100%;">Send Message</button>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="fgrid">
+    <div>
+      <div class="logo" onclick="window.location.href='index.html'">Fashion <em>Factory</em></div>
+      <p class="fdesc">Your trusted destination for premium quality school shoes. Serving families with style, comfort, and affordability since 2020.</p>
+    </div>
+    <div class="fcol">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html#products">Collection</a></li>
+        <li><a href="index.html#reviews">Reviews</a></li>
+        <li><a href="#" style="color: var(--gold);">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><a href="https://wa.me/919606262964" target="_blank">📱 +91 96062 62964</a></li>
+        <li><a href="#">📍 Fashion Factory Store</a></li>
+        <li><a href="#">🕐 Open Daily 9AM–8PM</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">© 2025 Fashion Factory · All rights reserved · Crafted with ❤️ for quality footwear</div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cov" id="cov" onclick="closeCart()"></div>
+<div class="cdrawer" id="cdrawer">
+  <div class="chdr">
+    <h2 class="ctitle">Your Cart 🛒</h2>
+    <button class="ccls" onclick="closeCart()">✕</button>
+  </div>
+  <div class="citems" id="citems"></div>
+  <div class="cftr" id="cftr" style="display:none">
+    <div style="display:flex;align-items:center;gap:7px;background:#f0faf3;border:1px solid #a8d5b5;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:11px;color:#2e7d50;font-weight:600"><span>🚚</span> Free delivery within 3 km range</div>
+    <div class="ctrow">
+      <span class="ctlbl">Total</span>
+      <span class="ctamt" id="ctamt">₹0</span>
+    </div>
+    <button class="bco" onclick="checkoutWA()">
+      <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Checkout via WhatsApp
+    </button>
+  </div>
+</div>
+
+<!-- WA FAB -->
+<a class="wafab" href="https://wa.me/919606262964" target="_blank" title="Chat on WhatsApp">
+  <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const WA = "919606262964";
+let cart = [];
+
+window.addEventListener('load',()=>{
+  if(window.innerWidth>768) {
+    const sk4 = document.getElementById('sk4');
+    if(sk4) sk4.style.display='block';
+  }
+  setTimeout(()=>{
+    const sk=document.getElementById('sk');
+    if(sk) {
+      sk.classList.add('out');
+      setTimeout(()=>sk.style.display='none',650);
+    }
+  },1200); // Shorter loader for better contact page UX
+  buildParticles();
+  setupReveal();
+  loadCart();
+});
+
+function buildParticles(){
+  const c=document.getElementById('pts');
+  for(let i=0;i<22;i++){
+    const p=document.createElement('div');
+    p.className='pt';
+    const sz=1+Math.random()*3;
+    p.style.cssText=`left:${Math.random()*100}%;width:${sz}px;height:${sz}px;animation-duration:${9+Math.random()*12}s;animation-delay:${Math.random()*10}s`;
+    c.appendChild(p);
+  }
+}
+
+function setupReveal(){
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.08});
+  document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+}
+
+function saveCart(){
+  try { localStorage.setItem('ff_cart', JSON.stringify(cart)); } catch(e){}
+}
+function loadCart(){
+  try { cart = JSON.parse(localStorage.getItem('ff_cart') || '[]'); } catch(e){ cart = []; }
+  updBadge();
+}
+
+function updBadge(){
+  const b=document.getElementById('cbadge');
+  if(b) {
+    b.textContent=cart.length;
+    b.style.display=cart.length?'flex':'none';
+  }
+}
+
+function rmCart(id){
+  cart=cart.filter(i=>i.id!==id);
+  renderCart(); updBadge(); saveCart();
+}
+
+function openCart(){
+  renderCart();
+  document.getElementById('cov').classList.add('open');
+  document.getElementById('cdrawer').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeCart(){
+  document.getElementById('cov').classList.remove('open');
+  document.getElementById('cdrawer').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function renderCart(){
+  const el=document.getElementById('citems'),ft=document.getElementById('cftr');
+  if(!cart.length){
+    el.innerHTML=`<div class="cempty"><div class="cempty-ic">🛒</div><p>Your cart is empty</p><p style="font-size:12px;margin-top:6px;color:#555">Browse our collection!</p></div>`;
+    ft.style.display='none';return;
+  }
+  const tot=cart.reduce((s,i)=>s+i.price,0);
+  el.innerHTML=cart.map(it=>`
+     <div class="citem">
+       <img class="cimg" src="${it.img}" alt="${it.name}">
+       <div>
+         <div class="cin">${it.name}</div>
+         <div class="csz">Size: ${it.sz} · ${it.cls}</div>
+         <div class="cpr">₹${it.price}</div>
+       </div>
+       <button class="crm" onclick="rmCart(${it.id})">✕</button>
+     </div>`).join('');
+  document.getElementById('ctamt').textContent=`₹${tot}`;
+  ft.style.display='block';
+}
+
+function checkoutWA(){
+  if(!cart.length)return;
+  let msg=`Hello Fashion Factory! 👋\n\nI'd like to place an order:\n\n`;
+  let tot=0;
+  cart.forEach((it,i)=>{
+    msg+=`${i+1}. 👟 *${it.name}*\n   📏 Size: *${it.sz}* | ${it.cls} | ₹${it.price}\n\n`;
+    tot+=it.price;
+  });
+  msg+=`━━━━━━━━━━━━\n💳 *Total: ₹${tot}*\n\nPlease confirm my order. Thank you! 🙏`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+function sendForm(e) {
+  e.preventDefault();
+  const name = document.getElementById('cname').value.trim();
+  const email = document.getElementById('cemail').value.trim();
+  const msg = document.getElementById('cmsg').value.trim();
+  
+  if(!name || !email || !msg) {
+    toast('⚠️ Please fill out all fields first!');
+    return;
+  }
+  
+  const waMsg = `Hello Fashion Factory! 👋\n\nI want to send a message:\n\n👤 *Name*: ${name}\n📧 *Email*: ${email}\n💬 *Message*:\n${msg}`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(waMsg)}`, '_blank');
+}
+</script>
+</body>
+</html>
