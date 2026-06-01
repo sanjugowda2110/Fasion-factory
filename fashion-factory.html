@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fashion Factory | Premium School Shoes</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--gold:#b8860b;--gold-l:#c8960c;--bg:#faf8f3;--bg2:#f2ece0;--bg3:#fffdf7;--bg4:#e8e0d0;--txt:#1a1204;--dim:#7a6e5f;--border:rgba(184,134,11,.22);--wa:#25D366}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+
+/* SKELETON */
+#sk{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;transition:opacity .6s ease}
+#sk.out{opacity:0;pointer-events:none}
+.sk-logo{width:220px;height:36px;border-radius:6px}
+.sk-row{display:flex;gap:16px;margin-top:10px}
+.sk-card{width:170px;border-radius:12px;overflow:hidden}
+.sk-img{height:160px}
+.sk-t{height:14px;margin:8px 10px 6px;border-radius:4px}
+.sk-t.s{width:55%;height:11px;margin-bottom:10px}
+.sk-logo,.sk-img,.sk-t{background:linear-gradient(90deg,#e8e2d6 25%,#d4cdc0 50%,#e8e2d6 75%);background-size:200% 100%;animation:shim 1.4s infinite}
+@keyframes shim{0%{background-position:200% 0}100%{background-position:-200% 0}}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:14px 40px;background:rgba(8,8,8,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:all .3s}
+.logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:var(--gold);letter-spacing:3px;text-transform:uppercase;cursor:pointer;user-select:none}
+.logo em{color:#fff;font-style:normal}
+nav{display:flex;gap:28px}
+nav a{color:var(--dim);text-decoration:none;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500;transition:color .2s}
+nav a:hover{color:var(--gold)}
+.cart-btn{position:relative;background:none;border:1px solid var(--border);color:var(--txt);padding:8px 20px;border-radius:30px;cursor:pointer;font-size:12px;letter-spacing:1px;display:flex;align-items:center;gap:8px;transition:all .3s;font-family:'Inter',sans-serif}
+.cart-btn:hover{border-color:var(--gold);color:var(--gold)}
+.cbadge{position:absolute;top:-7px;right:-7px;background:var(--gold);color:#000;font-size:9px;font-weight:700;width:18px;height:18px;border-radius:50%;display:none;align-items:center;justify-content:center}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;padding:100px 20px 60px}
+.hbg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(212,175,55,.09) 0%,transparent 65%),radial-gradient(ellipse at 80% 80%,rgba(212,175,55,.05) 0%,transparent 50%)}
+.particles{position:absolute;inset:0;pointer-events:none}
+.pt{position:absolute;border-radius:50%;background:var(--gold);opacity:.25;animation:flt linear infinite}
+@keyframes flt{0%{transform:translateY(110vh);opacity:0}10%{opacity:.25}90%{opacity:.25}100%{transform:translateY(-80px);opacity:0}}
+.htag{display:inline-block;border:1px solid var(--gold);color:var(--gold);font-size:10px;letter-spacing:4px;text-transform:uppercase;padding:6px 20px;border-radius:20px;margin-bottom:20px;animation:fu .8s ease both}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(44px,8vw,96px);font-weight:900;line-height:1.02;margin-bottom:18px;animation:fu .8s .15s ease both}
+.hero h1 .g{color:var(--gold)}
+.hero p{font-size:15px;color:var(--dim);max-width:460px;line-height:1.8;margin-bottom:36px;animation:fu .8s .3s ease both}
+.hbtns{display:flex;gap:14px;animation:fu .8s .45s ease both;flex-wrap:wrap;justify-content:center}
+.btn-p{background:var(--gold);color:#000;padding:14px 34px;border:none;border-radius:30px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif}
+.btn-p:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 12px 30px rgba(212,175,55,.3)}
+.btn-o{background:none;color:var(--txt);padding:14px 34px;border:1px solid rgba(255,255,255,.15);border-radius:30px;font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif}
+.btn-o:hover{border-color:var(--gold);color:var(--gold)}
+@keyframes fu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* STATS BAR */
+.stats{display:flex;align-items:center;justify-content:center;gap:0;background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.stat{flex:1;text-align:center;padding:22px 10px;border-right:1px solid var(--border)}
+.stat:last-child{border-right:none}
+.stat-n{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:var(--gold)}
+.stat-l{font-size:11px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase;margin-top:2px}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s ease}
+.rev.vis{opacity:1;transform:translateY(0)}
+
+/* SECTIONS */
+section{padding:80px 40px}
+.sh{text-align:center;margin-bottom:56px}
+.stag{color:var(--gold);font-size:10px;letter-spacing:4px;text-transform:uppercase;margin-bottom:10px}
+.st{font-family:'Playfair Display',serif;font-size:clamp(26px,4vw,46px);font-weight:700}
+.gl{width:56px;height:2px;background:var(--gold);margin:14px auto 0}
+
+/* PRODUCTS */
+#products{background:var(--bg2)}
+.pgrid{display:grid;grid-template-columns:repeat(2,minmax(0,420px));gap:32px;max-width:900px;margin:0 auto;justify-content:center}
+@media(max-width:600px){.pgrid{grid-template-columns:1fr}}
+.scard{background:var(--bg3);border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,.07);cursor:pointer;transition:transform .3s,box-shadow .3s,border-color .3s}
+.scard:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(0,0,0,.12),0 0 0 1px var(--gold);border-color:var(--gold)}
+.simg{overflow:hidden;height:320px;position:relative}
+.simg img{width:100%;height:100%;object-fit:cover;transition:transform 1.4s cubic-bezier(.25,.46,.45,.94)}
+.scard:hover .simg img{transform:scale(1.13)}
+.sbadge{position:absolute;top:12px;left:12px;background:var(--gold);color:#000;font-size:9px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:20px;text-transform:uppercase;z-index:2}
+.sinfo{padding:18px}
+.scat{color:var(--gold);font-size:9px;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:5px}
+.sname{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;margin-bottom:6px}
+.sprice{color:var(--dim);font-size:12px;margin-bottom:14px}
+.sprice span{color:var(--gold);font-weight:600}
+.vbtn{width:100%;background:none;border:1px solid var(--border);color:var(--txt);padding:10px;border-radius:8px;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif}
+.vbtn:hover{background:var(--gold);border-color:var(--gold);color:#000;font-weight:700}
+
+/* MODAL */
+.mov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);z-index:500;align-items:center;justify-content:center;padding:16px}
+.mov.open{display:flex;animation:fin .25s ease}
+@keyframes fin{from{opacity:0}to{opacity:1}}
+.modal{background:var(--bg3);border-radius:20px;border:1px solid var(--border);max-width:880px;width:100%;max-height:92vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;position:relative;animation:msi .4s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes msi{from{opacity:0;transform:scale(.86) translateY(36px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.mcls{position:absolute;top:14px;right:14px;background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.15);color:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;z-index:10;transition:all .2s}
+.mcls:hover{background:#e53935;border-color:#e53935}
+.mgal{position:relative;border-radius:20px 0 0 20px;overflow:hidden;min-height:420px;background:#000}
+.gmain{width:100%;height:380px;object-fit:cover;display:block;transition:opacity .35s ease}
+.garrows{position:absolute;bottom:72px;left:0;right:0;display:flex;justify-content:space-between;padding:0 14px;pointer-events:none}
+.garr{background:rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.2);color:#fff;width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all .2s;pointer-events:all}
+.garr:hover{background:var(--gold);color:#000;border-color:var(--gold)}
+.gthumbs{display:flex;gap:7px;padding:8px 12px;position:absolute;bottom:12px;left:0;right:0;overflow-x:auto}
+.gthumb{width:54px;height:46px;border-radius:7px;overflow:hidden;cursor:pointer;border:2px solid transparent;transition:border-color .2s;flex-shrink:0}
+.gthumb.act{border-color:var(--gold)}
+.gthumb img{width:100%;height:100%;object-fit:cover}
+.mdet{padding:28px;display:flex;flex-direction:column}
+.mcat{color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.mname{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:14px;line-height:1.2}
+.mprice{font-size:28px;font-weight:700;color:var(--gold);margin-bottom:18px;min-height:40px}
+.mprice small{font-size:13px;color:var(--dim);font-weight:400}
+.szlbl{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.szgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:20px}
+.sz{background:var(--bg2);border:1px solid rgba(0,0,0,.09);color:var(--txt);padding:9px 4px;border-radius:8px;cursor:pointer;font-size:10px;text-align:center;transition:all .2s;line-height:1.4;font-family:'Inter',sans-serif}
+.sz .sv{font-weight:700;display:block;font-size:11px}
+.sz .sp{color:var(--gold);display:block;margin-top:2px}
+.sz .sc{color:var(--dim);font-size:9px;display:block}
+.sz:hover,.sz.sel{background:var(--gold);border-color:var(--gold);color:#fff}
+.sz.sel .sp,.sz.sel .sc,.sz:hover .sp,.sz:hover .sc{color:rgba(255,255,255,.7)}
+.macts{display:flex;flex-direction:column;gap:9px;margin-top:auto;padding-top:16px}
+.bwa{background:var(--wa);color:#fff;padding:13px;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .3s;font-family:'Inter',sans-serif;letter-spacing:.3px}
+.bwa:hover{background:#1da050;transform:translateY(-2px);box-shadow:0 10px 24px rgba(37,211,102,.3)}
+.bac{background:none;color:var(--txt);padding:13px;border:1px solid var(--border);border-radius:10px;font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:all .3s;font-family:'Inter',sans-serif}
+.bac:hover{border-color:var(--gold);color:var(--gold)}
+
+/* CART */
+.cov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(5px);z-index:400}
+.cov.open{display:block}
+.cdrawer{position:fixed;top:0;right:-430px;width:420px;height:100vh;background:var(--bg3);border-left:1px solid var(--border);z-index:401;transition:right .4s cubic-bezier(.34,1.56,.64,1);display:flex;flex-direction:column}
+.cdrawer.open{right:0}
+.chdr{padding:22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.ctitle{font-family:'Playfair Display',serif;font-size:21px;font-weight:700}
+.ccls{background:none;border:1px solid rgba(255,255,255,.1);color:var(--txt);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.ccls:hover{border-color:#e53935;color:#e53935}
+.citems{flex:1;overflow-y:auto;padding:14px}
+.citem{display:grid;grid-template-columns:76px 1fr auto;gap:10px;padding:11px;background:var(--bg2);border-radius:11px;margin-bottom:10px;border:1px solid rgba(255,255,255,.04);align-items:center}
+.cimg{width:76px;height:66px;object-fit:cover;border-radius:7px}
+.cin{font-size:13px;font-weight:600;margin-bottom:3px}
+.csz{font-size:11px;color:var(--dim);margin-bottom:3px}
+.cpr{font-size:14px;color:var(--gold);font-weight:700}
+.crm{background:none;border:none;color:var(--dim);cursor:pointer;font-size:16px;transition:color .2s;padding:3px;align-self:start}
+.crm:hover{color:#e53935}
+.cempty{text-align:center;padding:50px 20px;color:var(--dim)}
+.cempty-ic{font-size:44px;margin-bottom:12px;opacity:.3}
+.cftr{padding:18px 22px;border-top:1px solid var(--border)}
+.ctrow{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.ctlbl{font-size:12px;color:var(--dim);text-transform:uppercase;letter-spacing:1px}
+.ctamt{font-size:24px;font-weight:700;color:var(--gold)}
+.bco{width:100%;background:var(--wa);color:#fff;padding:15px;border:none;border-radius:11px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;transition:all .3s;font-family:'Inter',sans-serif}
+.bco:hover{background:#1da050;transform:translateY(-2px);box-shadow:0 10px 28px rgba(37,211,102,.3)}
+
+/* REVIEWS */
+#reviews{background:var(--bg)}
+.rgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(278px,1fr));gap:22px;max-width:1200px;margin:0 auto}
+.rcard{background:var(--bg3);border:1px solid rgba(255,255,255,.05);border-radius:15px;padding:22px;transition:border-color .3s,transform .3s}
+.rcard:hover{border-color:var(--border);transform:translateY(-4px)}
+.stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:10px}
+.rtxt{font-size:13px;line-height:1.75;color:var(--dim);margin-bottom:14px;font-style:italic}
+.rrev{display:flex;align-items:center;gap:10px}
+.rav{width:34px;height:34px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:700;color:#000;font-size:13px;flex-shrink:0}
+.rn{font-weight:600;font-size:13px}
+.rc{font-size:11px;color:var(--dim)}
+
+/* FOOTER */
+footer{background:#050505;border-top:1px solid var(--border);padding:56px 40px 28px}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:50px;max-width:1100px;margin:0 auto 36px}
+.fdesc{color:var(--dim);font-size:13px;line-height:1.75;max-width:270px;margin-top:12px}
+.fcol h4{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.fcol ul{list-style:none}
+.fcol ul li{margin-bottom:10px}
+.fcol ul li a{color:var(--dim);text-decoration:none;font-size:13px;transition:color .2s}
+.fcol ul li a:hover{color:var(--gold)}
+.fbot{border-top:1px solid rgba(255,255,255,.04);padding-top:22px;text-align:center;color:var(--dim);font-size:12px;max-width:1100px;margin:0 auto}
+
+/* WA FAB */
+.wafab{position:fixed;bottom:28px;right:28px;background:var(--wa);color:#fff;width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 6px 24px rgba(37,211,102,.45);z-index:300;transition:transform .3s,box-shadow .3s;text-decoration:none;animation:pulse-wa 2.5s infinite}
+.wafab:hover{transform:scale(1.1);box-shadow:0 10px 30px rgba(37,211,102,.6)}
+@keyframes pulse-wa{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.45)}50%{box-shadow:0 6px 32px rgba(37,211,102,.75),0 0 0 8px rgba(37,211,102,.1)}}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bg3);border:1px solid var(--gold);color:var(--txt);padding:11px 22px;border-radius:30px;font-size:12px;font-weight:500;z-index:9999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0)}
+
+@media(max-width:768px){
+  header{padding:10px 16px}
+  nav{display:none}
+  section{padding:56px 16px}
+  .stats{flex-wrap:wrap}
+  .stat{min-width:50%;border-right:none;border-bottom:1px solid var(--border);padding:16px 8px}
+  .modal{grid-template-columns:1fr;max-height:96vh}
+  .mgal{border-radius:20px 20px 0 0;min-height:auto}
+  .gmain{height:240px}
+  .cdrawer{width:100%;right:-100%}
+  .fgrid{grid-template-columns:1fr;gap:28px}
+  .wafab{bottom:20px;right:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- SKELETON -->
+<div id="sk">
+  <div class="sk-logo"></div>
+  <div class="sk-row">
+    <div class="sk-card"><div class="sk-img"></div><div class="sk-t"></div><div class="sk-t s"></div></div>
+    <div class="sk-card"><div class="sk-img"></div><div class="sk-t"></div><div class="sk-t s"></div></div>
+    <div class="sk-card"><div class="sk-img"></div><div class="sk-t"></div><div class="sk-t s"></div></div>
+    <div class="sk-card" style="display:none" id="sk4"><div class="sk-img"></div><div class="sk-t"></div><div class="sk-t s"></div></div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo" onclick="scrollTo({top:0,behavior:'smooth'})">Fashion <em>Factory</em></div>
+  <nav>
+    <a href="#products">Collection</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#footer">Contact</a>
+  </nav>
+  <button class="cart-btn" onclick="openCart()">
+    🛒 Cart
+    <span class="cbadge" id="cbadge"></span>
+  </button>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hbg"></div>
+  <div class="particles" id="pts"></div>
+  <div class="htag">✦ Premium School Footwear 2025</div>
+  <h1>Step Into <span class="g">Style</span><br>Walk with <span class="g">Pride</span></h1>
+  <p>Premium school shoes crafted for comfort, durability, and elegance. Every step tells a story of quality.</p>
+  <div class="hbtns">
+    <button class="btn-p" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Collection</button>
+    <button class="btn-o" onclick="window.open('https://wa.me/918746900461','_blank')">Order on WhatsApp</button>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat rev"><div class="stat-n">500+</div><div class="stat-l">Happy Families</div></div>
+  <div class="stat rev"><div class="stat-n">8</div><div class="stat-l">Shoe Styles</div></div>
+  <div class="stat rev"><div class="stat-n">₹599</div><div class="stat-l">Starting Price</div></div>
+  <div class="stat rev"><div class="stat-n">5★</div><div class="stat-l">Avg. Rating</div></div>
+</div>
+
+<!-- PRODUCTS -->
+<section id="products">
+  <div class="sh rev">
+    <div class="stag">✦ Our Collection</div>
+    <h2 class="st">Premium Shoe Collection</h2>
+    <div class="gl"></div>
+  </div>
+  <div class="pgrid" id="pgrid"></div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="sh rev">
+    <div class="stag">✦ Testimonials</div>
+    <h2 class="st">What Parents Say</h2>
+    <div class="gl"></div>
+  </div>
+  <div class="rgrid" id="rgrid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="fgrid">
+    <div>
+      <div class="logo">Fashion <em>Factory</em></div>
+      <p class="fdesc">Your trusted destination for premium quality school shoes. Serving families with style, comfort, and affordability since 2020.</p>
+    </div>
+    <div class="fcol">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#products">Collection</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="https://wa.me/918746900461" target="_blank">WhatsApp Order</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <h4>Contact Us</h4>
+      <ul>
+        <li><a href="https://wa.me/918746900461" target="_blank">📱 +91 87469 00461</a></li>
+        <li><a href="#">📍 Fashion Factory Store</a></li>
+        <li><a href="#">🕐 Open Daily 9AM–8PM</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fbot">© 2025 Fashion Factory · All rights reserved · Crafted with ❤️ for quality footwear</div>
+</footer>
+
+<!-- MODAL -->
+<div class="mov" id="mov" onclick="ovClick(event)">
+  <div class="modal" id="modal">
+    <button class="mcls" onclick="closeModal()">✕</button>
+    <div class="mgal">
+      <img class="gmain" id="gmain" src="" alt="">
+      <div class="gcnt" id="gcnt"></div>
+      <div style="position:absolute;bottom:76px;left:0;right:0;display:flex;justify-content:space-between;padding:0 14px;pointer-events:none">
+        <button class="garr" style="pointer-events:all" onclick="prevSl()">&#8249;</button>
+        <button class="garr" style="pointer-events:all" onclick="nextSl()">&#8250;</button>
+      </div>
+      <div class="gthumbs" id="gthumbs"></div>
+    </div>
+    <div class="mdet">
+      <div class="mcat" id="mcat"></div>
+      <div class="mname" id="mname"></div>
+      <div class="mprice" id="mprice"><small style="font-size:14px;color:#666">← Select a size to see price</small></div>
+      <div class="szlbl">Select Size & Class</div>
+      <div class="szgrid" id="szgrid"></div>
+      <div class="del-badge"><span>🚚</span> Free delivery within 3 km range</div>
+      <div class="macts">
+        <button class="bwa" onclick="buyWA()">
+          <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Buy Now via WhatsApp
+        </button>
+        <button class="bac" onclick="addCart()">🛒 Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CART -->
+<div class="cov" id="cov" onclick="closeCart()"></div>
+<div class="cdrawer" id="cdrawer">
+  <div class="chdr">
+    <h2 class="ctitle">Your Cart 🛒</h2>
+    <button class="ccls" onclick="closeCart()">✕</button>
+  </div>
+  <div class="citems" id="citems"></div>
+  <div class="cftr" id="cftr" style="display:none">
+    <div style="display:flex;align-items:center;gap:7px;background:#f0faf3;border:1px solid #a8d5b5;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:11px;color:#2e7d50;font-weight:600"><span>🚚</span> Free delivery within 3 km range</div>
+    <div class="ctrow">
+      <span class="ctlbl">Total</span>
+      <span class="ctamt" id="ctamt">₹0</span>
+    </div>
+    <button class="bco" onclick="checkoutWA()">
+      <svg width="17" height="17" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Checkout via WhatsApp
+    </button>
+  </div>
+</div>
+
+<!-- WA FAB -->
+<a class="wafab" href="https://wa.me/918746900461" target="_blank" title="Chat on WhatsApp">
+  <svg width="26" height="26" fill="white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+const WA = "918746900461";
+const SZ = [
+  {s:"8C – 10C",p:599,op:599,discount:10,c:"Pre-nursery"},
+  {s:"11C – 13C",p:599,c:"Class 1–2"},
+  {s:"1 – 3",p:699,c:"Class 3–4"},
+  {s:"4 – 5",p:699,c:"Class 5–6"},
+  {s:"6 – 10",p:699,c:"Class 7–10"},
+  {s:"11",p:799,c:"Big Size"},
+  {s:"12",p:799,c:"Big Size"},
+  {s:"13",p:799,c:"Big Size"},
+];
+const SHOES = [
+  {id:1,name:"Classic Black Elite",cat:"School Formal",tag:"Bestseller",imgs:[
+    "images/black shoes/1.jpeg",
+    "images/black shoes/IMG-20260423-WA0001.jpg.jpeg",
+    "images/black shoes/IMG-20260423-WA0002.jpg.jpeg",
+    "images/black shoes/IMG-20260423-WA0003.jpg.jpeg",
+    "images/black shoes/IMG-20260423-WA0004.jpg.jpeg"]},
+  {id:2,name:"White Sport Pro",cat:"Sports & Active",tag:"New Arrival",imgs:[
+    "images/white shoes/IMG-20260525-WA0006.jpg.jpeg",
+    "images/white shoes/IMG-20260525-WA0008.jpg.jpeg",
+    "images/white shoes/IMG-20260525-WA0010.jpg.jpeg",
+    "images/white shoes/IMG-20260525-WA0012.jpg.jpeg",
+    "images/white shoes/IMG-20260525-WA0032.jpg.jpeg"]},
+];
+const REVIEWS = [
+  {n:"Priya Sharma",c:"Parent · Class 3",s:5,t:"Amazing quality! My daughter has worn them for 3 months and they still look brand new. Great value for the price."},
+  {n:"Rahul Verma",c:"Parent · Class 7",s:5,t:"Ordered via WhatsApp — super easy! Shoes arrived perfect. My son loves the fit and comfort during long school hours."},
+  {n:"Meera Pillai",c:"Parent · Pre-nursery",s:5,t:"Perfect for my little one! Velcro straps let her wear them by herself. Very durable and comfortable, highly recommended!"},
+  {n:"Arjun Nair",c:"Parent · Class 5",s:4,t:"Good quality school shoes. Price is very reasonable and comfort is great. Will definitely order again next year."},
+  {n:"Sunita Patel",c:"Parent · Class 1",s:5,t:"Fashion Factory never disappoints! Third time ordering from them. Best school shoes in this price range, without any doubt."},
+  {n:"Karthik Reddy",c:"Parent · Class 9",s:5,t:"Excellent quality! Big size fits perfectly and the finish looks very professional for school. Worth every rupee."},
+  {n:"Deepa Krishnan",c:"Parent · Class 2",s:4,t:"Happy with the purchase! Ordering through WhatsApp was smooth and delivery was fast. Highly recommended to all parents!"},
+  {n:"Vinod Kumar",c:"Parent · Class 6",s:5,t:"Best school shoes at this price. Very durable — my son is rough with everything and these still hold up great after 5 months!"},
+  {n:"Anita Joshi",c:"Parent · Class 4",s:5,t:"Superb quality and great service. The size chart was very helpful. Exactly what I needed for my daughter. Will order again!"},
+];
+
+let cart=[], curShoe=null, curSl=0, selSz=null;
+
+window.addEventListener('load',()=>{
+  if(window.innerWidth>768) document.getElementById('sk4').style.display='block';
+  setTimeout(()=>{
+    const sk=document.getElementById('sk');
+    sk.classList.add('out');
+    setTimeout(()=>sk.style.display='none',650);
+  },2200);
+  renderShoes();
+  renderReviews();
+  buildParticles();
+  setupReveal();
+});
+
+function buildParticles(){
+  const c=document.getElementById('pts');
+  for(let i=0;i<22;i++){
+    const p=document.createElement('div');
+    p.className='pt';
+    const sz=1+Math.random()*3;
+    p.style.cssText=`left:${Math.random()*100}%;width:${sz}px;height:${sz}px;animation-duration:${9+Math.random()*12}s;animation-delay:${Math.random()*10}s`;
+    c.appendChild(p);
+  }
+}
+
+function setupReveal(){
+  const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis')}),{threshold:.08});
+  document.querySelectorAll('.rev').forEach(el=>obs.observe(el));
+}
+
+function renderShoes(){
+  document.getElementById('pgrid').innerHTML=SHOES.map(sh=>`
+    <div class="scard rev" onclick="openModal(${sh.id})">
+      <div class="simg">
+        <img src="${sh.imgs[0]}" alt="${sh.name}" loading="lazy">
+        <span class="sbadge">${sh.tag}</span>
+      </div>
+      <div class="sinfo">
+        <div class="scat">${sh.cat}</div>
+        <div class="sname">${sh.name}</div>
+        <div class="sprice">From <span>₹599</span> – <span>₹799</span></div>
+        <button class="vbtn">View Details →</button>
+      </div>
+    </div>`).join('');
+  setTimeout(setupReveal,80);
+}
+
+function renderReviews(){
+  document.getElementById('rgrid').innerHTML=REVIEWS.map(r=>`
+    <div class="rcard rev">
+      <div class="stars">${'★'.repeat(r.s)}${'☆'.repeat(5-r.s)}</div>
+      <p class="rtxt">"${r.t}"</p>
+      <div class="rrev">
+        <div class="rav">${r.n[0]}</div>
+        <div><div class="rn">${r.n}</div><div class="rc">${r.c}</div></div>
+      </div>
+    </div>`).join('');
+  setTimeout(setupReveal,80);
+}
+
+function openModal(id){
+  curShoe=SHOES.find(s=>s.id===id);
+  curSl=0; selSz=null;
+  document.getElementById('mcat').textContent=curShoe.cat;
+  document.getElementById('mname').textContent=curShoe.name;
+  document.getElementById('mprice').innerHTML='<small style="font-size:14px;color:#666">← Select a size to see price</small>';
+  document.getElementById('gmain').src=curShoe.imgs[0];
+  document.getElementById('gcnt').textContent=`1 / ${curShoe.imgs.length}`;
+  renderThumbs();
+  document.getElementById('szgrid').innerHTML=SZ.map((sz,i)=>{
+    const finalP=sz.discount?Math.round(sz.op*(1-sz.discount/100)):sz.p;
+    const discHTML=sz.discount?`<span class="sz-old">₹${sz.op}</span><span class="sz-off">-${sz.discount}%</span>`:'';
+    return`<button class="sz" onclick="pickSz(${i})">
+      <span class="sv">${sz.s}</span>
+      ${discHTML}
+      <span class="sp">₹${finalP}</span>
+      <span class="sc">${sz.c}</span>
+    </button>`;
+  }).join('');
+  document.getElementById('mov').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function renderThumbs(){
+  document.getElementById('gthumbs').innerHTML=curShoe.imgs.map((img,i)=>`
+    <div class="gthumb ${i===curSl?'act':''}" onclick="goSl(${i})">
+      <img src="${img}" alt="">
+    </div>`).join('');
+}
+
+function goSl(i){
+  curSl=i;
+  const m=document.getElementById('gmain');
+  m.style.opacity='0';
+  setTimeout(()=>{m.src=curShoe.imgs[curSl];m.style.opacity='1';},300);
+  document.getElementById('gcnt').textContent=`${curSl+1} / ${curShoe.imgs.length}`;
+  renderThumbs();
+}
+function prevSl(){goSl((curSl-1+curShoe.imgs.length)%curShoe.imgs.length)}
+function nextSl(){goSl((curSl+1)%curShoe.imgs.length)}
+
+function closeModal(){
+  document.getElementById('mov').classList.remove('open');
+  document.body.style.overflow='';
+  selSz=null;
+}
+function ovClick(e){if(e.target===document.getElementById('mov'))closeModal();}
+
+function pickSz(i){
+  selSz={...SZ[i]};
+  if(selSz.discount) selSz.p=Math.round(selSz.op*(1-selSz.discount/100));
+  document.querySelectorAll('.sz').forEach((b,j)=>b.classList.toggle('sel',j===i));
+  const discNote=selSz.discount?` <small style="font-size:11px;color:#e53935;font-weight:600">(${selSz.discount}% OFF)</small>`:'';
+  document.getElementById('mprice').innerHTML=`₹${selSz.p}${discNote} <small>/ pair &nbsp;·&nbsp; ${selSz.c}</small>`;
+}
+
+function buyWA(){
+  if(!selSz){toast('⚠️ Please select a size first!');return;}
+  const msg=`Hello Fashion Factory! 👋\n\nI'd like to order:\n\n👟 *${curShoe.name}*\n📏 Size: *${selSz.s}*\n🎓 Class: *${selSz.c}*\n💰 Price: *₹${selSz.p}*\n\nPlease confirm availability. Thank you! 🙏`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+function addCart(){
+  if(!selSz){toast('⚠️ Please select a size first!');return;}
+  cart.push({id:Date.now(),name:curShoe.name,img:curShoe.imgs[0],sz:selSz.s,cls:selSz.c,price:selSz.p});
+  updBadge();
+  toast(`✅ Added to cart!`);
+  closeModal();
+}
+
+function rmCart(id){
+  cart=cart.filter(i=>i.id!==id);
+  renderCart(); updBadge();
+}
+
+function updBadge(){
+  const b=document.getElementById('cbadge');
+  b.textContent=cart.length;
+  b.style.display=cart.length?'flex':'none';
+}
+
+function openCart(){
+  renderCart();
+  document.getElementById('cov').classList.add('open');
+  document.getElementById('cdrawer').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeCart(){
+  document.getElementById('cov').classList.remove('open');
+  document.getElementById('cdrawer').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function renderCart(){
+  const el=document.getElementById('citems'),ft=document.getElementById('cftr');
+  if(!cart.length){
+    el.innerHTML=`<div class="cempty"><div class="cempty-ic">🛒</div><p>Your cart is empty</p><p style="font-size:12px;margin-top:6px;color:#555">Browse our collection!</p></div>`;
+    ft.style.display='none';return;
+  }
+  const tot=cart.reduce((s,i)=>s+i.price,0);
+  el.innerHTML=cart.map(it=>`
+    <div class="citem">
+      <img class="cimg" src="${it.img}" alt="${it.name}">
+      <div>
+        <div class="cin">${it.name}</div>
+        <div class="csz">Size: ${it.sz} · ${it.cls}</div>
+        <div class="cpr">₹${it.price}</div>
+      </div>
+      <button class="crm" onclick="rmCart(${it.id})">✕</button>
+    </div>`).join('');
+  document.getElementById('ctamt').textContent=`₹${tot}`;
+  ft.style.display='block';
+}
+
+function checkoutWA(){
+  if(!cart.length)return;
+  let msg=`Hello Fashion Factory! 👋\n\nI'd like to place an order:\n\n`;
+  let tot=0;
+  cart.forEach((it,i)=>{
+    msg+=`${i+1}. 👟 *${it.name}*\n   📏 Size: *${it.sz}* | ${it.cls} | ₹${it.price}\n\n`;
+    tot+=it.price;
+  });
+  msg+=`━━━━━━━━━━━━\n💳 *Total: ₹${tot}*\n\nPlease confirm my order. Thank you! 🙏`;
+  window.open(`https://wa.me/${WA}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+function toast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2800);
+}
+</script>
+</body>
+</html>
