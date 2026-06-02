@@ -102,6 +102,8 @@ footer{background:#050505;border-top:1px solid var(--border);padding:56px 40px 2
 .btn-p{background:var(--gold);color:#000;padding:14px 34px;border:none;border-radius:30px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;box-shadow:none}
 .btn-p:hover{background:var(--gold-l);transform:translateY(-2px);box-shadow:0 12px 30px rgba(212,175,55,.3)}
 
+.menu-btn { display: none; background: none; border: none; color: var(--txt); font-size: 24px; cursor: pointer; }
+
 /* CONTACT SPECIFIC STYLES */
 .contact-hero {
   min-height: 100vh;
@@ -244,7 +246,9 @@ footer{background:#050505;border-top:1px solid var(--border);padding:56px 40px 2
 
 @media(max-width:768px){
   header{padding:10px 16px}
-  nav{display:none}
+  nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg3);flex-direction:column;padding:20px;border-bottom:1px solid var(--border);box-shadow:0 10px 20px rgba(0,0,0,0.1);gap:16px;}
+  nav.open{display:flex}
+  .menu-btn { display: block; }
   section{padding:56px 16px}
   .cdrawer{width:100%;right:-100%}
   .fgrid{grid-template-columns:1fr;gap:28px}
@@ -290,15 +294,18 @@ footer{background:#050505;border-top:1px solid var(--border);padding:56px 40px 2
 <!-- HEADER -->
 <header>
   <div class="logo" onclick="window.location.href='index.html'">Fashion <em>Factory</em></div>
-  <nav>
-    <a href="index.html#products">Collection</a>
-    <a href="index.html#reviews">Reviews</a>
-    <a href="#" style="color: var(--gold);">Contact</a>
+  <nav id="navMenu">
+    <a href="index.html#products" onclick="toggleMenu()">Collection</a>
+    <a href="index.html#reviews" onclick="toggleMenu()">Reviews</a>
+    <a href="#" style="color: var(--gold);" onclick="toggleMenu()">Contact</a>
   </nav>
-  <button class="cart-btn" onclick="openCart()">
-    🛒 Cart
-    <span class="cbadge" id="cbadge"></span>
-  </button>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart
+      <span class="cbadge" id="cbadge"></span>
+    </button>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  </div>
 </header>
 
 <!-- MAIN CONTENT -->
@@ -307,15 +314,15 @@ footer{background:#050505;border-top:1px solid var(--border);padding:56px 40px 2
   <div class="particles" id="pts"></div>
   
   <section class="contact-section">
-    <div class="sh rev">
+    <div class="sh">
       <div class="stag">✦ Reach Out</div>
       <h1 class="st">Contact Us</h1>
       <div class="gl"></div>
     </div>
     
-    <p class="contact-intro rev">Have questions or want to place an order? We'd love to hear from you. Reach out to us through any of these channels.</p>
+    <p class="contact-intro">Have questions or want to place an order? We'd love to hear from you. Reach out to us through any of these channels.</p>
     
-    <div class="contact-grid rev">
+    <div class="contact-grid">
       <!-- Left Column: Contact Methods -->
       <div class="contact-methods">
         <!-- WhatsApp Card -->
@@ -536,6 +543,10 @@ function toast(msg){
   t.textContent=msg;
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+function toggleMenu() {
+  document.getElementById('navMenu').classList.toggle('open');
 }
 
 function sendForm(e) {

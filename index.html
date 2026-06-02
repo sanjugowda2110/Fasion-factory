@@ -187,9 +187,19 @@ footer{background:#050505;border-top:1px solid var(--border);padding:56px 40px 2
 .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bg3);border:1px solid var(--gold);color:var(--txt);padding:11px 22px;border-radius:30px;font-size:12px;font-weight:500;z-index:9999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;pointer-events:none}
 .toast.show{transform:translateX(-50%) translateY(0)}
 
+/* FULLSCREEN VIEWER */
+.fs-viewer{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);z-index:9999;align-items:center;justify-content:center;cursor:zoom-out;overflow:auto}
+.fs-viewer.open{display:flex;animation:fin .25s ease}
+.fs-img{max-width:95vw;max-height:95vh;object-fit:contain;transition:transform .3s;cursor:zoom-in}
+.fs-img.zoomed{transform:scale(2);cursor:zoom-out}
+
+.menu-btn { display: none; background: none; border: none; color: var(--txt); font-size: 24px; cursor: pointer; }
+
 @media(max-width:768px){
   header{padding:10px 16px}
-  nav{display:none}
+  nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg3);flex-direction:column;padding:20px;border-bottom:1px solid var(--border);box-shadow:0 10px 20px rgba(0,0,0,0.1);gap:16px;}
+  nav.open{display:flex}
+  .menu-btn { display: block; }
   section{padding:56px 16px}
   .stats{flex-wrap:wrap}
   .stat{min-width:50%;border-right:none;border-bottom:1px solid var(--border);padding:16px 8px}
@@ -218,15 +228,18 @@ footer{background:#050505;border-top:1px solid var(--border);padding:56px 40px 2
 <!-- HEADER -->
 <header>
   <div class="logo" onclick="scrollTo({top:0,behavior:'smooth'})">Fashion <em>Factory</em></div>
-  <nav>
-    <a href="#products">Collection</a>
-    <a href="#reviews">Reviews</a>
+  <nav id="navMenu">
+    <a href="#products" onclick="toggleMenu()">Collection</a>
+    <a href="#reviews" onclick="toggleMenu()">Reviews</a>
     <a href="contact.html">Contact</a>
   </nav>
-  <button class="cart-btn" onclick="openCart()">
-    🛒 Cart
-    <span class="cbadge" id="cbadge"></span>
-  </button>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button class="cart-btn" onclick="openCart()">
+      🛒 Cart
+      <span class="cbadge" id="cbadge"></span>
+    </button>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  </div>
 </header>
 
 <!-- HERO -->
@@ -302,7 +315,7 @@ footer{background:#050505;border-top:1px solid var(--border);padding:56px 40px 2
   <div class="modal" id="modal">
     <button class="mcls" onclick="closeModal()">✕</button>
     <div class="mgal">
-      <img class="gmain" id="gmain" src="" alt="">
+      <img class="gmain" id="gmain" src="" alt="" onclick="openFs(this.src)" style="cursor:zoom-in">
       <div class="gcnt" id="gcnt"></div>
       <div style="position:absolute;bottom:76px;left:0;right:0;display:flex;justify-content:space-between;padding:0 14px;pointer-events:none">
         <button class="garr" style="pointer-events:all" onclick="prevSl()">&#8249;</button>
@@ -356,6 +369,16 @@ footer{background:#050505;border-top:1px solid var(--border);padding:56px 40px 2
 
 <!-- TOAST -->
 <div class="toast" id="toast"></div>
+
+<!-- FULLSCREEN VIEWER -->
+<div class="fs-viewer" id="fsViewer" onclick="closeFs(event)">
+  <div style="position:absolute;top:50%;left:0;right:0;display:flex;justify-content:space-between;padding:0 20px;pointer-events:none;transform:translateY(-50%);z-index:10001;">
+    <button class="garr" style="pointer-events:all;width:44px;height:44px;font-size:24px;" onclick="prevFs(event)">&#8249;</button>
+    <button class="garr" style="pointer-events:all;width:44px;height:44px;font-size:24px;" onclick="nextFs(event)">&#8250;</button>
+  </div>
+  <button class="mcls" style="position:absolute;top:20px;right:20px;z-index:10001;pointer-events:all;" onclick="document.getElementById('fsViewer').classList.remove('open')">✕</button>
+  <img class="fs-img" id="fsImg" src="" alt="" onclick="toggleZoom(event)">
+</div>
 
 <script>
 const WA = "919606262964";
@@ -614,6 +637,47 @@ function toast(msg){
   t.textContent=msg;
   t.classList.add('show');
   setTimeout(()=>t.classList.remove('show'),2800);
+}
+
+function toggleMenu() {
+  document.getElementById('navMenu').classList.toggle('open');
+}
+
+function openFs(src) {
+  const fsImg = document.getElementById('fsImg');
+  fsImg.src = src;
+  fsImg.classList.remove('zoomed');
+  document.getElementById('fsViewer').classList.add('open');
+}
+
+function closeFs(e) {
+  if (e.target.id === 'fsViewer') {
+    document.getElementById('fsViewer').classList.remove('open');
+  }
+}
+
+function prevFs(e) {
+  e.stopPropagation();
+  if(!curShoe) return;
+  curSl = (curSl - 1 + curShoe.imgs.length) % curShoe.imgs.length;
+  document.getElementById('fsImg').src = curShoe.imgs[curSl];
+  document.getElementById('fsImg').classList.remove('zoomed');
+  goSl(curSl);
+}
+
+function nextFs(e) {
+  e.stopPropagation();
+  if(!curShoe) return;
+  curSl = (curSl + 1) % curShoe.imgs.length;
+  document.getElementById('fsImg').src = curShoe.imgs[curSl];
+  document.getElementById('fsImg').classList.remove('zoomed');
+  goSl(curSl);
+}
+
+function toggleZoom(e) {
+  e.stopPropagation();
+  const img = document.getElementById('fsImg');
+  img.classList.toggle('zoomed');
 }
 </script>
 </body>
